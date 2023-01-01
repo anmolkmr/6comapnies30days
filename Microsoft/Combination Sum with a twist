@@ -1,0 +1,34 @@
+class Solution {
+public:
+    void solve(int ind,vector<int>& ip,vector<int>& op,set<vector<int>>& ans,int n,int k)
+    {
+        if(n==0||ind==ip.size())
+        {
+            if(op.size()==k&&n==0)
+            {sort(op.begin(),op.end());
+            ans.insert(op);
+            }
+            return;
+        }
+        op.push_back(ip[ind]);
+        solve(ind+1,ip,op,ans,n-ip[ind],k);
+        op.pop_back();
+        solve(ind+1,ip,op,ans,n,k);
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int> ip;
+        set<vector<int>> ans;
+        vector<vector<int>> ans2;
+        vector<int> op;
+        for(int i=1;i<10;i++)
+        ip.push_back(i);
+        solve(0,ip,op,ans,n,k);
+        for(auto it:ans)
+        {
+            ans2.push_back(it);
+
+        }
+        return ans2;
+        
+    }
+};

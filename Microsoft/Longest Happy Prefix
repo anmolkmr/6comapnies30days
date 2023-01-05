@@ -1,0 +1,41 @@
+class Solution {
+public:
+    string longestPrefix(string s) {
+        string ans;
+        int i=0,j=1,n=s.length();
+        vector<int> temp(n);
+        if(n==1)
+        return ans;
+        else
+        {
+            while(j<n)
+            {
+                if(s[i]==s[j])
+                {
+                    while(j<n&&s[i]==s[j])
+                    {
+                        temp[j]=i+1;
+                        i++;
+                        j++;
+                    }
+                    while(i>0&&s[i]!=s[j])
+                    {
+                        i=temp[i-1];
+                    }
+
+                }
+                else if(s[i]!=s[j])
+                {
+                    temp[j]=0;
+                    j++;
+                }
+            }
+        }
+        for(auto it:temp)
+        cout<<it;
+        for(i=0;i<temp[n-1];i++)
+        ans+=s[i];
+        return ans;
+        
+    }
+};
